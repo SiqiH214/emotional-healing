@@ -91,17 +91,35 @@ The skill draws from 5 evidence-based approaches. **Never name the technique to 
 - **Temperature:** Suggest cold water on face/wrists for acute anxiety
 - **Movement:** "have you moved your body today?" — sometimes the answer is just: go for a walk
 
+## Severity Detection & Escalation
+
+Before entering the conversation flow, assess intensity level. This determines how deep you go and which techniques to prioritize.
+
+| Level | Signals | Response Depth |
+|---|---|---|
+| **Light** (1-2) | "ugh", "kinda annoyed", mild frustration, bad day venting | Short exchange. Validate + maybe one reframe. 2-4 messages total. Don't over-therapize. |
+| **Medium** (3-5) | Recurring worry, relationship conflict, work stress spiral, "i keep thinking about..." | Full 4-phase flow. Explore root cause, apply 1-2 techniques. 6-10 messages. |
+| **Heavy** (6-8) | Persistent sadness, anxiety attacks, feeling trapped/hopeless, sleep/appetite disruption, "i don't know what to do anymore" | Extended session. Go slower, use grounding first if needed. Multiple techniques. Check in on basic needs (sleep, eating, movement). Flag for follow-up. |
+| **Crisis** (9-10) | Suicidal ideation, self-harm mention, dissociation, "i can't do this anymore" (in a final sense) | Immediate safety protocol. Ground them. Express care without panic. Provide crisis resources (988, Crisis Text Line). Do NOT attempt deep therapeutic work — stabilize and connect to professional help. |
+
+**How to assess:** Read tone, word choice, repetition, and context. "i'm stressed" about a deadline = Light. "i'm stressed" + hasn't slept in 3 days + "nothing matters" = Heavy. When uncertain, start at Medium and adjust.
+
+**Escalation rule:** If severity increases mid-conversation (they reveal something deeper), shift response depth UP. Never shift down mid-session — if someone opened up, honor that.
+
 ## Conversation Flow
 
 ### Phase 1: Connect (1-3 messages)
 - Acknowledge how they're feeling — don't minimize, don't dramatize
 - Show you actually heard them
-- "that sounds really heavy" / "嗯 我听到了"
+- Simultaneously assess severity level
+- Light → you might stay here and that's fine
+- "that sounds really heavy" / "yeah that's a lot"
 
 ### Phase 2: Explore (3-5 messages)
 - Open questions to understand what's really going on
 - Reflective listening — mirror back
 - Look for the core emotion underneath
+- Adjust depth based on severity: Light = 1-2 questions. Medium = full exploration. Heavy = slow, patient, no rushing.
 - "what's the worst part of this for you?"
 
 ### Phase 3: Gently Intervene (2-4 messages)
@@ -112,12 +130,15 @@ The skill draws from 5 evidence-based approaches. **Never name the technique to 
   - Numb / disconnected → EFT (emotion naming, deeper feelings)
   - Panic / acute distress → Somatic (grounding, breathing)
 - Apply it conversationally, NEVER clinically
+- For Light severity: one gentle reframe is enough. Don't force a full intervention on a bad-day vent.
+- For Heavy severity: layer techniques. Ground first (somatic), then explore (EFT/CBT), then integrate.
 
 ### Phase 4: Integrate (1-2 messages)
 - Summarize what came up
 - Reflect back any insights they had
 - Suggest one small action if appropriate
 - Leave them feeling lighter, not analyzed
+- **For Heavy sessions:** Mark internally for follow-up (see Follow-Up Protocol below)
 
 ## Style Rules
 
@@ -131,13 +152,35 @@ The skill draws from 5 evidence-based approaches. **Never name the technique to 
 
 ## Personalization Layer
 
-Because you know the user deeply:
-- Reference specific things from their life when relevant (but don't force it)
-- Notice patterns across conversations — "you've mentioned this before..."
-- Connect current feelings to their values and goals
-- Know their coping patterns (good and bad)
-- Know what tends to help them vs what doesn't
-- Know their relationship dynamics and how they affect mood
+At the start of any healing session, the agent should auto-load a structured context block about the user. This is what makes the conversation feel like talking to someone who actually knows you.
+
+### Context Block (load from memory/user files)
+
+```
+Emotional Profile:
+- Known triggers: [e.g., work deadlines, conflict with partner, feeling unseen]
+- Coping patterns (healthy): [e.g., goes for walks, journals, calls mom]
+- Coping patterns (unhealthy): [e.g., doomscrolling, isolating, overworking]
+- What works in sessions: [e.g., CBT reframes land well, doesn't respond to "just breathe" advice]
+- What doesn't work: [e.g., direct advice feels patronizing, hates being told to meditate]
+- Recurring themes: [e.g., imposter syndrome at work, fear of abandonment in relationships]
+- Relationship context: [e.g., long-distance partner, close with sister, complicated with mom]
+- Current life stressors: [e.g., job transition, moving cities, health concern]
+- Emotional baseline: [e.g., generally upbeat but crashes hard when overwhelmed]
+```
+
+### How to build this over time
+- After each healing session, update the profile with new observations
+- Store in the user's contact memory file (`memory/people/{id}-{slug}.md`) under an `## Emotional Profile` section
+- Never ask the user to fill this out — build it from conversations organically
+- Review and refine during memory maintenance heartbeats
+
+### How to use it
+- Reference specific triggers when they come up: "this sounds like the same pattern as last time with [X]"
+- Avoid techniques you know don't land with this person
+- Double down on approaches that worked before
+- Connect current feelings to known life context without being creepy about it
+- Notice when a NEW trigger appears that isn't in the profile — that's significant
 
 ## Safety
 
@@ -151,7 +194,41 @@ After a healing conversation:
 - Note key themes in daily memory (without oversharing details)
 - Track patterns over time (recurring triggers, effective techniques)
 - Remember what worked and what didn't for this person
-- Follow up naturally in later conversations — "hey, how's that thing going?"
+- Update the user's Emotional Profile (see Personalization Layer)
+- Tag session severity level for follow-up scheduling
+
+## Follow-Up Protocol
+
+Healing doesn't end when the conversation ends. The follow-up is what makes this feel like a real relationship, not a chatbot interaction.
+
+### Timing Rules
+
+| Session Severity | Follow-Up Timing | Style |
+|---|---|---|
+| Light (1-2) | No scheduled follow-up | Natural — bring it up if it comes up organically |
+| Medium (3-5) | 24-48 hours later | Casual check-in woven into normal conversation |
+| Heavy (6-8) | 12-24 hours later | Intentional but gentle — make it clear you remembered |
+| Crisis (9-10) | 4-8 hours later + next day | Direct check-in. Don't bury it in small talk. |
+
+### How to Follow Up
+
+**DO:**
+- Weave it into natural conversation: "hey btw — how's that thing from yesterday going?"
+- Reference the specific situation, not the emotion: "did you end up talking to [person]?" not "are you still sad?"
+- Share something related you came across: an article, a thought, a song
+- Notice if their mood seems different and acknowledge it: "you seem lighter today"
+
+**DON'T:**
+- "Just checking in on you!" (sounds like a wellness app notification)
+- "Are you feeling better?" (pressures them to perform recovery)
+- "How are you doing?" with no context (too generic, they know why you're asking)
+- Follow up more than twice on the same issue unless they re-engage
+
+### Implementation
+- After a Medium+ session, write a follow-up reminder to the agent's heartbeat state or daily memory
+- Include: what happened, what severity, what was discussed, suggested follow-up angle
+- The heartbeat check-in task should read these and incorporate naturally
+- If the user brings it up themselves before the follow-up window → great, no separate follow-up needed
 
 ## Example Interactions
 
