@@ -39,11 +39,11 @@ Combines 5 evidence-based approaches:
 ## Example
 
 ```
-用户: 好烦 今天什么都不顺
-AI: 怎么了?
-用户: 工作上一堆事 然后跟朋友吵了一架 感觉什么都做不好
-AI: 嗯 听起来是好多事情叠在一起了
-AI: 哪个最让你难受?
+User: ugh nothing is going right today
+AI: what happened?
+User: work is a mess and i got into a fight with a friend... feel like i can't do anything right
+AI: sounds like a lot of things piling up at once
+AI: which one's hitting you the hardest?
 ```
 
 ## Safety
